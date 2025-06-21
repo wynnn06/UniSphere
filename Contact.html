@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = "utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>UNISPHERE</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="">
+        <link rel="stylesheet" href="style.css">
+        <link rel="icon" href="images/LOGO.png" type="image/png" />
+    </head>
+    <body>
+        <header>
+                <img class="logo" src="images/UNISPHERE.png" alt="logo">
+
+        <!--Navigation-->           
+                <nav>
+                  <ul class="nav_links">
+                    <li><a href="Home.php">Home</a></li>
+                    <li><a href="About.html">About us</a></li>
+                    <li><a href="Contact.html">Contact us</a></li>
+                  </ul>
+                </nav>
+        </header>
+        <script src=""></script>
+
+      <!--Hero Section-->
+      <!-- Contact Section (Hidden by default, shown only when Contact Us is clicked) -->
+      <section class="contact-section">
+        <div class="form-container">
+        <div class="form-header">
+          <h1>GET IN TOUCH</h1>
+          <p>
+           Have any questions about student organizations or technical support? We'd love to help!<br />
+           Just fill out the contact form, and we'll assist you shortly.
+         </p>
+        <hr />
+      </div>
+
+      <form action="#" method="post">
+        <div class="form-row">
+          <div class="input-group">
+            <label for="first_name">First Name</label>
+            <input type="text" id="first_name" name="first_name" placeholder="First Name" required />
+          </div>
+          <div class="input-group">
+            <label for="last_name">Last Name</label>
+            <input type="text" id="last_name" name="last_name" placeholder="Last Name" required />
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="Email Address" required />
+        </div>
+
+        <div class="input-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Message" required></textarea>
+        </div>
+
+        <button type="submit">SUBMIT</button>
+      </form>
+    </div>
+
+    <div class="envelopes">
+      <img src="images/envelopes.png" alt="envelopes" />
+    </div>
+   </section>
+  </body>
+</html>
