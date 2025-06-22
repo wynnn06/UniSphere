@@ -1,8 +1,8 @@
 <?php
 // Define the SQL Server connection parameters
-$serverName = "localhost";
+$serverName = "LAPTOP-1CCLLEBE\\SQLEXPRESS"; //localhost  before
 $connectionOptions = array(
-    "Database" => "Organizations", // Name of the database
+    "Database" => "Datasets", // Name of the database  // "Database" => "Organizations", 
     "Uid" => "sa",                 // SQL Server username
     "PWD" => "Unisphere123!",      // SQL Server password
     "TrustServerCertificate" => true // Trust certificate for local connection
@@ -18,7 +18,7 @@ if (!$connection) {
 }
 
 // Define the SQL query to retrieve organization details
-$sql = "SELECT Control_no, Organization_name, Org_classification, Department, Org_type FROM dbo.Organizations";
+$sql = "SELECT Control_no, Organization_name, Org_classification, Department, Org_type FROM dbo.Datasets";
 
 // Execute the SQL query
 $stmt = sqlsrv_query($connection, $sql);

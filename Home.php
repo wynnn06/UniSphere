@@ -8,8 +8,6 @@
         <meta name="viewport" content="">
         <link rel="stylesheet" href="style.css">
         <link rel="icon" href="images/LOGO.png" type="image/png" />
-        <script src="load-organizations.js"></script>
-        <script src="Sorting-Algorithm.js"></script>
 
     </head>
     <body>
@@ -44,8 +42,10 @@
                  <!-- Sorting Dropdown Selection-->
                 <select class="sort-dropdown">
                     <option value="reset">Sort by</option>
-                    <option value="ascending">Ascending (A-Z)</option>
-                    <option value="descending">Descending (Z-A)</option>
+                    <option value="orgname-asc">Name (A-Z)</option>
+                    <option value="orgname-desc">Name (Z-A)</option>
+                    <option value="controlno-asc">Control No. (Ascending)</option>
+                    <option value="controlno-desc">Control No. (Descending)</option>
                 </select>
             </div>
 
@@ -130,5 +130,9 @@
     </footer>
 
     </main>
+
+    <script src="load-organizations.js"></script>
+    <script src="LinearSearch-Algorithm.js"></script>
+    <script src="Sorting-Algorithm.js"></script>
     </body>
 </html>
