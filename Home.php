@@ -14,7 +14,7 @@
         <header>
                 <img class="logo" src="images/UNISPHERE.png" alt="logo">
 
-        <!--Navigation-->           
+<!--Navigation-->           
                 <nav>
                 <ul class="nav_links">
                     <li><a href="Home.php">Home</a></li>
@@ -37,7 +37,7 @@
            
             <!-- Search Bar -->
             <div class="searchbar-sortselection">
-                <input type="text" placeholder="Search Organization" class="search-input"/>
+                <input type="text" placeholder="Search Organization Name" class="search-input"/>
                 
                  <!-- Sorting Dropdown Selection-->
                 <select class="sort-dropdown">
@@ -97,7 +97,7 @@
                                 <span class="filter-tag" data-group="department" data-value="CS">CS</span>
                                 <span class="filter-tag" data-group="department" data-value="CTHTM">CTHTM</span>
                                 <span class="filter-tag" data-group="department" data-value="OUS">OUS</span>
-                                <span class="filter-tag" data-group="department" data-value="U-Wide">U-Wide</span>
+                                <span class="filter-tag" data-group="department" data-value="UWIDE">U-Wide</span>
 
                             </div>
                     </div>
@@ -132,7 +132,9 @@
     </main>
 
     <script src="load-organizations.js"></script>
-    <script src="LinearSearch-Algorithm.js"></script>
+    <script src="Searching-Algorithm.js"></script>
     <script src="Sorting-Algorithm.js"></script>
+    <script src="Filters-Algorithm.js"></script>
+
     </body>
 </html>
