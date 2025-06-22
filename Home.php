@@ -10,6 +10,7 @@
         <link rel="icon" href="images/LOGO.png" type="image/png" />
         <script src="load-organizations.js"></script>
         <script src="Sorting-Algorithm.js"></script>
+        <script src="LinearSearch-Algorithm.js"></script>
 
     </head>
     <body>
