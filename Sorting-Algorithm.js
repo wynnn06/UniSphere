@@ -1,128 +1,200 @@
-//!!!!!!!!!!NOT CONNECTED YET 
+/* Main Sorting Algorithm Used: Quick Sort algorithm for sorting an array of objects by a given key (e.g., org name or control no)
+   Parameters:
+     - array: the data to sort (array of organization objects)
+     - key: the property to sort by ("organization_name" or "control_no")
+     - ascending: true for ascending order, false for descending
 
-/*  Algorithm used: Quick Sort 
-    Pivot selected: Last element
-    Sort by key (Organization Name): Ascending and Descending
+     Comparison-Based Sorting Algorithm: Merge Sort
+
 */
 
+//Load DOM 
 document.addEventListener("DOMContentLoaded", function () {
-    const dropdown = document.querySelector(".sort-dropdown");  // Get references to the dropdown and the table body where organizations are displayed
-    const tableBody = document.getElementById("org-table-body");
+    const dropdown = document.querySelector(".sort-dropdown");  // Get references to the dropdown 
+    const tableBody = document.getElementById("org-table-body"); //and the table body where organizations are displayed
 
-     // To extract table data into a usable array of objects
-    function getTableData() {
-        const rows = Array.from(tableBody.querySelectorAll("tr")); // Get all table rows
-        return rows.map(row => {
-            const cells = row.querySelectorAll("td"); // Get all cells in the current row
-            return {
-                control_no: cells[0].textContent.trim(),
-                organization_name: cells[1].textContent.trim(),
-                org_classification: cells[2].textContent.trim(),
-                department: cells[3].textContent.trim(),
-                org_type: cells[4].textContent.trim()
-            };
-        });
-    }
+     //Function to extract table data into a usable array of objects
+        function getTableData() {
+            const rows = Array.from(tableBody.querySelectorAll("tr"))
+                .filter(row => row.style.display !== "none"); // only use visible rows
 
-    // Function to update the table in the DOM with sorted data
-    function renderTable(data) {
-        tableBody.innerHTML = ""; // Clear the current table
-        data.forEach(row => {
-            // Rebuild each row with sorted data
-            tableBody.innerHTML += `
-                <tr>
+            return rows.map(row => {
+                const cells = row.querySelectorAll("td");
+                return {
+                        control_no: cells[0].textContent.trim(),
+                        organization_name: cells[1].textContent.trim(),
+                        org_classification: cells[2].textContent.trim(),
+                        department: cells[3].textContent.trim(),
+                        org_type: cells[4].textContent.trim()
+                };
+            });
+        }
+
+    // Function to Re-render the table using the provided array of organization objects
+        function renderTable(data) {
+        
+            // Remove only the currently visible rows
+                const allRows = Array.from(tableBody.querySelectorAll("tr"));
+                allRows.forEach(row => {
+                    
+                    if (row.style.display !== "none") {
+                    row.remove();
+                    }
+                });
+
+            // Rebuild rows with new sorted data
+                data.forEach(row => {
+                    const tr = document.createElement("tr");
+                    tr.innerHTML = `
                     <td>${row.control_no}</td>
                     <td>${row.organization_name}</td>
                     <td>${row.org_classification}</td>
                     <td>${row.department}</td>
                     <td>${row.org_type}</td>
-                </tr>
-            `;
-        });
-    }
+                    `;
+                    tableBody.appendChild(tr);
+                });
+        }
 
-    //Function Declartion of Quick Sort Algorithm
+/*------------------------------- QUICK SORT ALGORITHM -------------------------------*/    
+/*
     function quicksort(array, key, ascending = true) {
-        if (array.length <= 1) // Base case: already sorted
-            return array; 
+        
+        // Base case: already sorted
+            if (array.length <= 1) 
+                return array; 
 
-        const pivot = array[array.length - 1];  //Pivot is last element
-        const left = [];
-        const right = [];
+        //Select Pivot = last element
+        //const pivot = array[array.length - 1];
+            
+        //Select Pivot = last element
+        const pivot = array[Math.floor(array.length / 2)]; // middle element
+ 
+        
+        //holds item: left (less than pivot) and right (greater than pivot)
+            const left = [];
+            const right = [];
 
         //Compare each item with the pivot 
-        for (let i = 0; i < array.length - 1; i++) {
-            let a = array[i][key];
-            let b = pivot[key];
+            for (let i = 0; i < array.length - 1; i++) {
+                let a = array[i][key];
+                let b = pivot[key];
+
+                if (key === "control_no") {
+                    // Use numeric sorting for control numbers (e.g. 2425-001)
+                        a = parseInt(a.split("-")[1]); //gets only the numeric part
+                        b = parseInt(b.split("-")[1]);
+                } else {
+                    // String sort for organization name (case-insensitive)
+                        a = a.toLowerCase();
+                        b = b.toLowerCase();
+                }
+                
+            // Compare values depending on ascending or descending sort
+                if ((ascending && a < b) || (!ascending && a > b)) {
+                    left.push(array[i]);
+                } else {
+                    right.push(array[i]);
+                }
+            }
+        // Recursively sort the left and right parts and combine    
+            return [...quicksort(left, key, ascending), pivot, ...quicksort(right, key, ascending)];
+    }
+    */ 
+    
+    // ---------------------- MERGE SORT ----------------------
+    function mergesort(array, key, ascending = true) {
+        if (array.length <= 1) return array; // Base case: arrays with 0 or 1 element are already sorted
+
+        const mid = Math.floor(array.length / 2); // Find the middle point to divide the array into two halves
+        const left = mergesort(array.slice(0, mid), key, ascending); // Recursively sort the left half
+        const right = mergesort(array.slice(mid), key, ascending); // Recursively sort the right half
+
+         // Merge the two sorted halves
+        return merge(left, right, key, ascending);
+    }
+
+    function merge(left, right, key, ascending) {
+        const result = [];
+
+        while (left.length && right.length) {
+        // Get the values to compare from each array's first element
+            let a = left[0][key];
+            let b = right[0][key];
 
             if (key === "control_no") {
-                // Use numeric sorting for control numbers (e.g. 2425-001)
+            // Use numeric sorting for control numbers (e.g. 2425-001)
                 a = parseInt(a.split("-")[1]); //gets only the numeric part
                 b = parseInt(b.split("-")[1]);
             } else {
-                // String sort for organization name (case-insensitive)
+             // String sort for organization name (case-insensitive)
                 a = a.toLowerCase();
                 b = b.toLowerCase();
             }
-            
-             // Compare values depending on ascending or descending sort
-            if ((ascending && a < b) || (!ascending && a > b)) {
-                left.push(array[i]);
+
+            // Compare based on sort direction (ascending/descending)
+            if (ascending) {
+            if (a < b) {
+                result.push(left.shift());  // Take from left if a < b (ascending)
             } else {
-                right.push(array[i]);
+                result.push(right.shift()); // Otherwise take from right
+            }
+        } else {
+            if (a > b) {
+                result.push(left.shift());  // Take from left if a > b (descending)
+            } else {
+                result.push(right.shift()); // Otherwise take from right
             }
         }
-        // Recursively sort the left and right parts and combine    
-        return [...quicksort(left, key, ascending), pivot, ...quicksort(right, key, ascending)];
+        }
+
+        return [...result, ...left, ...right];
     }
+    
 
     // Dropdown selection handler
-    dropdown.addEventListener("change", function () {
-        const selected = dropdown.value;   // Get selected sorting option
-        const data = getTableData();        // Extract current table data
-        let sorted;                        // Will store sorted result
+        dropdown.addEventListener("change", function () {
+            const selected = dropdown.value;   
+            const data = getTableData();        
+            let sorted;
+            let key = "";
+            let ascending = true;                        
 
-        switch (selected) {
-            case "orgname-asc":
-                sorted = quicksort(data, "organization_name", true);
-                break;
-            case "orgname-desc":
-                sorted = quicksort(data, "organization_name", false);
-                break;
-            case "controlno-asc":
-                sorted = quicksort(data, "control_no", true);
-                break;
-            case "controlno-desc":
-                sorted = quicksort(data, "control_no", false);
-                break;
-            case "reset":
-                location.reload(); // Reload to original order
-                return;
-        }
+            switch (selected) {
+                case "orgname-asc":
+                    key = "organization_name";
+                    ascending = true;
+                    break;
+                case "orgname-desc":
+                    key = "organization_name";
+                    ascending = false;
+                    break;
+                case "controlno-asc":
+                    key = "control_no";
+                    ascending = true;
+                    break;
+                case "controlno-desc":
+                    key = "control_no";
+                    ascending = false;
+                    break;
+                case "reset":
+                    location.reload();
+                    return;
+            }
 
-        renderTable(sorted);
-    });
+            const t0 = performance.now();
+
+        // To test Quick Sort
+        //sorted = quicksort(data, key, ascending);
+
+        // To test Merge Sort
+        sorted = mergesort(data, key, ascending);
+
+        const t1 = performance.now();
+        //console.log(`Sorted by ${key} (${ascending ? "ASC" : "DESC"}) using QUICK SORT in ${(t1 - t0).toFixed(2)}ms`);
+        console.log(`Sorted by ${key} (${ascending ? "ASC" : "DESC"}) using MERGE SORT in ${(t1 - t0).toFixed(2)}ms`);
+
+
+            renderTable(sorted);
+        });
 });
-
-
-  /* //Compare each item with the pivot 
-    for (let i = 0; i < array.length-1; i++){
-
-        //Convert organization names to lowercase 
-        if (array[i][key].toLowerCase() < pivot[key].toLowerCase()){
-            left.push(array[i]); //Put smaller values in the left array
-        }else{
-            right.push(array[i]);//Put larger or equal values (to the pivot) in the right array
-        }
-    }
-
-    // Recursively sort left and right arrays, and combine them with pivot
-        const sortedArray = [...quicksort(left, key), pivot, ...quicksort(right, key)];
-        console.log("Sorted result:", sortedArray); 
-        return sortedArray;
-}; */
-
-
-
-
-
