@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 /*------------------------------- QUICK SORT ALGORITHM -------------------------------*/    
-
+/*
     function quicksort(array, key, ascending = true) {
         
         // Base case: already sorted
@@ -65,7 +65,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 return array; 
 
         //Select Pivot = last element
-            const pivot = array[array.length - 1];  
+        //const pivot = array[array.length - 1];
+            
+        //Select Pivot = last element
+        const pivot = array[Math.floor(array.length / 2)]; // middle element
+ 
         
         //holds item: left (less than pivot) and right (greater than pivot)
             const left = [];
@@ -96,30 +100,100 @@ document.addEventListener("DOMContentLoaded", function () {
         // Recursively sort the left and right parts and combine    
             return [...quicksort(left, key, ascending), pivot, ...quicksort(right, key, ascending)];
     }
+    */ 
+    
+    // ---------------------- MERGE SORT ----------------------
+    function mergesort(array, key, ascending = true) {
+        if (array.length <= 1) return array; // Base case: arrays with 0 or 1 element are already sorted
+
+        const mid = Math.floor(array.length / 2); // Find the middle point to divide the array into two halves
+        const left = mergesort(array.slice(0, mid), key, ascending); // Recursively sort the left half
+        const right = mergesort(array.slice(mid), key, ascending); // Recursively sort the right half
+
+         // Merge the two sorted halves
+        return merge(left, right, key, ascending);
+    }
+
+    function merge(left, right, key, ascending) {
+        const result = [];
+
+        while (left.length && right.length) {
+        // Get the values to compare from each array's first element
+            let a = left[0][key];
+            let b = right[0][key];
+
+            if (key === "control_no") {
+            // Use numeric sorting for control numbers (e.g. 2425-001)
+                a = parseInt(a.split("-")[1]); //gets only the numeric part
+                b = parseInt(b.split("-")[1]);
+            } else {
+             // String sort for organization name (case-insensitive)
+                a = a.toLowerCase();
+                b = b.toLowerCase();
+            }
+
+            // Compare based on sort direction (ascending/descending)
+            if (ascending) {
+            if (a < b) {
+                result.push(left.shift());  // Take from left if a < b (ascending)
+            } else {
+                result.push(right.shift()); // Otherwise take from right
+            }
+        } else {
+            if (a > b) {
+                result.push(left.shift());  // Take from left if a > b (descending)
+            } else {
+                result.push(right.shift()); // Otherwise take from right
+            }
+        }
+        }
+
+        return [...result, ...left, ...right];
+    }
+    
 
     // Dropdown selection handler
         dropdown.addEventListener("change", function () {
             const selected = dropdown.value;   
             const data = getTableData();        
-            let sorted;                        
+            let sorted;
+            let key = "";
+            let ascending = true;                        
 
             switch (selected) {
                 case "orgname-asc":
-                    sorted = quicksort(data, "organization_name", true);
+                    key = "organization_name";
+                    ascending = true;
                     break;
                 case "orgname-desc":
-                    sorted = quicksort(data, "organization_name", false);
+                    key = "organization_name";
+                    ascending = false;
                     break;
                 case "controlno-asc":
-                    sorted = quicksort(data, "control_no", true);
+                    key = "control_no";
+                    ascending = true;
                     break;
                 case "controlno-desc":
-                    sorted = quicksort(data, "control_no", false);
+                    key = "control_no";
+                    ascending = false;
                     break;
                 case "reset":
                     location.reload();
                     return;
             }
+
+            const t0 = performance.now();
+
+        // To test Quick Sort
+        //sorted = quicksort(data, key, ascending);
+
+        // To test Merge Sort
+        sorted = mergesort(data, key, ascending);
+
+        const t1 = performance.now();
+        //console.log(`Sorted by ${key} (${ascending ? "ASC" : "DESC"}) using QUICK SORT in ${(t1 - t0).toFixed(2)}ms`);
+        console.log(`Sorted by ${key} (${ascending ? "ASC" : "DESC"}) using MERGE SORT in ${(t1 - t0).toFixed(2)}ms`);
+
 
             renderTable(sorted);
         });
