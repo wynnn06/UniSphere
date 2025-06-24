@@ -8,6 +8,7 @@ $connectionOptions = array(
     "TrustServerCertificate" => true // Trust certificate for local connection
 );
 
+
 // Attempt to connect to SQL Server
 $connection = sqlsrv_connect($serverName, $connectionOptions);
 
