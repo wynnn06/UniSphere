@@ -10,7 +10,187 @@
         <link rel="stylesheet" href="style.css">
         <link rel="icon" href="images/LOGO.png" type="image/png" />
     </head>
+
+<style>
+
+.contact-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  background-color: linear-gradient(to right, white 50%, #4b0b0b 50%);
+  border-radius: 20px;
+  margin: 30px auto; /* reduced margin */
+  padding: 20px 30px; /* reduced padding */
+  width: 90%;
+  max-width: 1000px; /* reduce max-width */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+
+/* FORM CONTAINER */
+.form-container {
+  flex: 1;
+  padding-right: 30px; 
+  display: flex;
+  flex-direction: column;
+  max-width: 500px; 
+}
+
+.form-header {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.form-header h1 {
+  font-size: 32px;
+  font-weight: 900;
+  letter-spacing: -1px;
+}
+
+.form-header p {
+  font-size: 10px;
+  color: #333;
+  font-weight: 500;
+  margin-top: 10px;
+  line-height: 1.5;
+}
+
+.form-header hr {
+  margin: 25px auto;
+  border: none;
+  height: 1px;
+  background-color: #aaa;
+  width: 100%;
+}
+
+/* FORM STYLING */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-row {
+  display: flex;
+  gap: 10px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+label {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  color: #222;
+}
+
+input, textarea {
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 15px;
+  border: 1px solid #ccc;
+  font-family: "Montserrat", sans-serif;
+  resize: none;
+  width: 100%;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+textarea {
+  height: 140px;
+}
+
+button[type="submit"] {
+  position: relative;
+  padding: 14px 28px;
+  font-size: 20px;
+  font-weight: 800;
+  border: none;
+  border-radius: 30px;
+   background: linear-gradient(to right, #8c1c13, #c1440e);
+  color: white;
+  cursor: pointer;
+  margin-top: 20px;
+  width: fit-content;
+  align-self: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  z-index: 0;
+    transition: transform 0.3s ease-in-out; 
+}
+
+button[type="submit"]::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(to right, #8c1c13, #e23d31);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease-in-out;
+  z-index: -1;
+}
+
+button[type="submit"]:hover {
+  transform: scale(1.05); 
+}
+
+button[type="submit"]:hover::before {
+  transform: scaleX(1);
+}
+
+
+/* ENVELOPES IMAGE */
+.envelopes {
+  flex: 1;
+  background-color: #4b0b0b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 30px 30px 0;
+  padding: 5px;
+  height: 100%;
+}
+
+.envelopes img {
+  width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* RESPONSIVE CONTACT SECTION */
+@media (max-width: 992px) {
+  .contact-section {
+    flex-direction: column;
+    border-radius: 20px;
+    padding: 20px;
+    width: 98%; 
+  }
+
+  .form-container {
+    padding-right: 0;
+    max-width: none; 
+  }
+
+  .form-row {
+    flex-direction: column;
+  }
+
+  .envelopes {
+    border-radius: 20px;
+    margin-top: 20px;
+  }
+}
+</style>
+
+    <!--BODY--> 
     <body>
+
         <header>
                 <img class="logo" src="images/UNISPHERE.png" alt="logo">
 

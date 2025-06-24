@@ -1,140 +1,421 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset = "utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>UNISPHERE</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="">
+<html lang="en">
+<head>
+    <meta charset="utf-8"> 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>UNISPHERE</title>
+    <meta name="description" content="UNISPHERE website">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
         <link rel="stylesheet" href="style.css">
-        <link rel="icon" href="images/LOGO.png" type="image/png" />
+    <link rel="icon" href="images/LOGO.png" type="image/png" />
 
-    </head>
-    <body>
-        <header>
-                <img class="logo" src="images/UNISPHERE.png" alt="logo">
+</head>
 
-<!--Navigation-->           
-                <nav>
-                <ul class="nav_links">
-                    <li><a href="Home.php">Home</a></li>
-                    <li><a href="About.html">About us</a></li>
-                    <li><a href="Contact.html">Contact us</a></li>
-                </ul>
-            </nav>
-        </header>
+<style>
+    .header{
+      position: relative;
+      z-index: 10;
+    }
 
-<main>        
-        <!--Hero Section-->
-        <section class="hero">
-            <h1> PUP Student Organizations </h1>
-            <p>Browse and discover student organizations that match your interests and passions. Search by name, 
-             <br>filter by classification, or sort to explore your options.</p>
-        </section>
+    html, body {
+      min-height: 100%;
+      margin: 0;
+      padding: 0;
+    }
 
-         <!--Searching, Sorting and Filter Section-->
-         <section class="searching-sorting-filter-section">
-           
-            <!-- Search Bar -->
-            <div class="searchbar-sortselection">
-                <input type="text" placeholder="Search Organization Name" class="search-input"/>
-                
-                 <!-- Sorting Dropdown Selection-->
-                <select class="sort-dropdown">
-                    <option value="reset">Sort by</option>
-                    <option value="orgname-asc">Name (A-Z)</option>
-                    <option value="orgname-desc">Name (Z-A)</option>
-                    <option value="controlno-asc">Control No. (Ascending)</option>
-                    <option value="controlno-desc">Control No. (Descending)</option>
-                </select>
-            </div>
+    .columns {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 60px 30px;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+   
+    .column.left {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 10%;
+      text-align: right;
+    }
 
-            <!-- Filter (CLASSIFICATION)-->
-            <div class="filters">
-                <div class="filter-header">
-                <h4>Filters</h4>
-                    <div class="clear-all">Clear all</div>
-                </div>
+    .column.left .card {
+      border-top: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+      padding: 15px 10px;
+      width: 80%;
+    }
 
-                <hr>
+    .column.left .card p {
+      text-align: right;
+      font-size: 13px;
+      line-height: 1.3;
+    }
 
-                <div class="filter-grid">
-        
-                <!-- Left Column: Classification -->
-                    <div class="filter-group">
-                        <strong>Classification</strong>
-                            <div class="tags">
-                                <span class="filter-tag" data-group="classification" data-value="Academic">Academic</span>
-                                <span class="filter-tag" data-group="classification" data-value="Advocacy">Advocacy</span>
-                                <span class="filter-tag" data-group="classification" data-value="Arts">Arts</span>
-                                <span class="filter-tag" data-group="classification" data-value="Cultural">Cultural</span>
-                                <span class="filter-tag" data-group="classification" data-value="Fraternities & Sororities">Fraternities & Sororities</span>
-                                <span class="filter-tag" data-group="classification" data-value="Political">Political</span>
-                                <span class="filter-tag" data-group="classification" data-value="Religious">Religious</span>
-                                <span class="filter-tag" data-group="classification" data-value="Scholars">Scholars</span>
-                                <span class="filter-tag" data-group="classification" data-value="Socio-civic">Socio-civic</span>
-                                <span class="filter-tag" data-group="classification" data-value="Special Interest">Special Interest</span>
-                                <span class="filter-tag" data-group="classification" data-value="Sports">Sports</span>
-                            </div>
-                    </div>
+    .column.left .card h3 {
+      font-size: 20px;
+      color: #222;
+      margin-top: 5px;
+      margin-bottom: 10px;
+    }
 
-                    <!-- Right Column: Department -->
-                    <div class="filter-group">
-                        <strong>Department</strong>
-                            <div class="tags">
-                                <span class="filter-tag" data-group="department" data-value="CAF">CAF</span>
-                                <span class="filter-tag" data-group="department" data-value="CAL">CAL</span>
-                                <span class="filter-tag" data-group="department" data-value="CADBE">CADBE</span>
-                                <span class="filter-tag" data-group="department" data-value="CBA">CBA</span>
-                                <span class="filter-tag" data-group="department" data-value="COC">COC</span>
-                                <span class="filter-tag" data-group="department" data-value="CCIS">CCIS</span>
-                                <span class="filter-tag" data-group="department" data-value="COED">COED</span>
-                                <span class="filter-tag" data-group="department" data-value="CE">CE</span>
-                                <span class="filter-tag" data-group="department" data-value="ITECH">ITECH</span>
-                                <span class="filter-tag" data-group="department" data-value="Law">Law</span>
-                                <span class="filter-tag" data-group="department" data-value="CPSPA">CPSPA</span>
-                                <span class="filter-tag" data-group="department" data-value="CSSD">CSSD</span>
-                                <span class="filter-tag" data-group="department" data-value="CS">CS</span>
-                                <span class="filter-tag" data-group="department" data-value="CTHTM">CTHTM</span>
-                                <span class="filter-tag" data-group="department" data-value="OUS">OUS</span>
-                                <span class="filter-tag" data-group="department" data-value="UWIDE">U-Wide</span>
+    .column.right {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      align-items: flex-start;
+    }
 
-                            </div>
-                    </div>
-                </div>
-                <hr>
-            </div>
+    .column.right .card {
+      border-top: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+      padding: 20px 10px;
+     width: 80%;
+    }
 
-        </section>
-                
-     <!-- Table Section -->            
-            <section> 
-                <div class="table-container">
-                    <table class="org-table">
-                        <thead>
-                            <tr> 
-                                <th>Control No.</th>
-                                <th>Organization Name</th>
-                                <th>Classification</th>
-                                <th>Department</th>
-                                <th>Type</th>
-                            </tr>
-                            </thead>
-                         <tbody id="org-table-body"> </tbody>
-                     </table>
-                </div>
-            </section>
+
+    .column.right .card h3 {
+      font-size: 20px;
+      color: #222;
+      margin-top: 5px;
+      margin-bottom: 10px;
+    }
+
+    .column.right .card p {
+      font-size: 13px;
+      line-height: 1.3;
+      text-align: left;
+    }
+
+
+    .center {
+      flex: 1;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 0;
+    }
+
+    .center::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(circle, rgba(255, 183, 135, 0.6) 0%, transparent 70%);
+      width: 500px;
+      height: 500px;
+      z-index: 0;
+    }
+
+    .logo-pair{
+      align-items: center;
+      flex-direction: column;
+      display: flex;
+      gap: 20px;
+      transform: scale(1);
+      transform-origin: center;
+    }
+
+    .logo-1 {
+      width: 150px;
+      height: auto;
+      margin-top: 40px;
+    }
+
+    .logo-2 {
+      width: 600px;
+      height: auto;
+    }
+
+    .team-section {
+      position: relative;
+      padding: 60px 20px;
+      text-align: center;
+      font-family: 'Montserrat', sans-serif;
+      overflow: hidden;
+      color: #fff;
+      z-index: 1;
+    }
+
+    .video-bg {
+      position: absolute;
+      top: 0; 
+      left: 0;
+      width: 100%;  
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      border-top-left-radius: 70px;     
+      border-top-right-radius: 70px;     
+      border-bottom-left-radius: 0; 
+      border-bottom-right-radius: 0;
+      pointer-events: none;
+      opacity: 1;
+    }
+
+    .team-section h2 {
+      font-size: 5rem;
+      margin-bottom: 10px;
+      background: linear-gradient(to right, 
+      rgb(248, 247, 247) 0%, 
+      rgba(218, 165, 31, 0.8) 40%, 
+      rgba(255, 126, 20, 0.8) 70%,
+      rgba(216, 36, 16, 0.8) 100%);
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+      display: inline-block;
+    }
+
+    .subtitle {
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: #ddd;
+    }
+
+    .team-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 60px;
+      max-width: 1000px;
+      margin: 0 auto;
+      margin-top: 5%;
+    }
+
+    .member-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: transparent;
+      padding: 15px 0;
+      border-radius: 0;
+      box-shadow: none;
+      backdrop-filter: none;
+      position: relative;
+      min-height: 400px; /* Ensures equal height for all cards */
+    }
+
+    .member-photo {
+      width: 300px;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    .name-line {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 0 10px;
+      position: relative;
+    }
+
+
+    .member-name {
+      font-size: 1.3rem;
+      color: #fff;
+      font-weight: 600;
+      text-align: left;
+      flex: 1; /* Makes sure it uses available space */
+    }
+
+    .inline-icon {
+      width: 30px;
+      height: 30px;
+      object-fit: contain;
+      margin-left: auto;
+      position: relative; /* No need for absolute here */
+    }
+
+    .inline-icon:hover {
+      filter: brightness(1.2);
+      cursor: pointer;
+    }
+
+    .role {
+      font-size: 0.9rem;
+      color: #ccc;
+      text-align: left;
+      width: 100%;
+      margin-top: 4px;
+      padding: 0 10px; /* Matches .name-line horizontal padding */
+    }
     
-    <footer class="site-footer">
-        <p>&copy; 2025 UNISPHERE. All rights reserved.</p>
-    </footer>
+    .footer{
+      margin-top: 100px;
+    }
+    
+</style>
 
-    </main>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const video = document.getElementById("bg-video");
+    if (video) {
+      video.playbackRate = 0.7; // ⬅️ 0.5 means half-speed
+    }
+  });
+</script>
 
-    <script src="load-organizations.js"></script>
-    <script src="Searching-Algorithm.js"></script>
-    <script src="Sorting-Algorithm.js"></script>
-    <script src="Filters-Algorithm.js"></script>
+<!--BODY--> 
+<body>
+  <header>
+    <img class="logo" src="images/UNISPHERE.png" alt="logo">
 
-    </body>
-</html>
+    <!--Navigation-->           
+      <nav>
+        <ul class="nav_links">
+            <li><a href="Home.php">Home</a></li>
+            <li><a href="About.html">About us</a></li>
+            <li><a href="Contact.html">Contact us</a></li>
+        </ul>
+      </nav>
+  </header>
+      
+  <div class="columns">
+    <div class="column left">
+      <div class="card">
+        <h3>Purpose</h3>
+        <p>Unisphere is for PUP students <br>
+          to find accredited or <br>
+          revalidated campus <br>
+          organizations in one platform.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Functionality</h3>
+        <p>Unisphere supports full CRUD <br>
+          operations for managing org <br>
+          records efficiently.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Student Empowerment</h3>
+        <p>Unisphere helps students<br>
+          discover orgs that match <br>
+          their goals and interests.
+        </p>
+      </div>
+    </div>
+
+    <div class="center">
+      <div class="logo-pair">
+        <img src="images/LOGO.png" alt="logo-1" class="logo-1">
+        <img src="images/uni-sphere.png" alt="logo-2" class="logo-2">
+        <p> Your Gateway to Campus Involvement.</p>
+     </div>
+    </div>   
+
+    <div class="column right">
+      <div class="card">
+        <h3>Technical Design</h3>
+        <p>
+          The system combines a <br>
+          structured database with a <br>
+          user-friendly interface.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Sorting System</h3>
+        <p>
+          Organizations are sorted <br>
+          alphabetically using the <br>
+          Quick Sort algorithm.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Search Algorithm</h3>
+        <p>
+          Unisphere uses Linear Search to <br>
+          quickly find student <br>
+          organizations.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <section class="team-section">
+    <video class="video-bg" id="bg-video" autoplay muted loop>
+        <source src="images/moving_background.mp4" type="video/mp4">
+    </video>
+    
+    <div class="page-wrapper">
+      <h2 class="team-title">MEET THE TEAM</h2>
+      <p class="team-subtitle">Driven by passion, united by purpose, meet the people of Unisphere.</p>
+
+      <div class="team-container">
+                  <div class="member-card">
+                    <img class="member-photo" src="images/Guarin.png" alt="Pauline Guarin" />
+                      <div class="name-line">
+                       <span class="member-name">Pauline Guarin</span>
+                       <img src="images/github.png" alt="Icon" class="inline-icon">
+                      </div>
+                        <p class="role">UI Designer / Front-End Developer</p>
+                  </div>
+
+                  <div class="member-card">
+                    <img class="member-photo" src="images/Ylanan.png" alt="Isaac Ylanan" />
+                      <div class="name-line">
+                        <span class="member-name">Isaac Ylanan</span>
+                        <img src="images/github.png" alt="icon" class="inline-icon">
+                      </div>
+                        <p class="role"> UI Designer / Backend Developer</p>
+                  </div>
+
+                  <div class="member-card">
+                    <img class="member-photo" src="images/DelaCruz.png" alt="Cielo DelaCruz" />
+                       <div class="name-line">
+                          <span class="member-name">Cielo DelaCruz</span>
+                          <img src="images/github.png" alt="icon" class="inline-icon">
+                        </div>
+                           <p class="role"> Backend Developer </p>
+                  </div>
+
+                  <div class="member-card">
+                    <img class="member-photo" src="images/Degulacion.png" alt="Sharwyn Degulacion" />
+                      <div class="name-line">
+                          <span class="member-name">Sharwyn Degulacion</span>
+                          <img src="images/github.png" alt="icon" class="inline-icon">
+                      </div>
+                          <p class="role">UI Designer / Front-End / Backend Developer</p>
+                  </div>
+
+                  <div class="member-card">
+                    <img class="member-photo" src="images/Bautista.png" alt="Aliyah Bautista" />
+                      <div class="name-line">
+                          <span class="member-name">Aliyah Bautista</span>
+                          <img src="images/github.png" alt="icon" class="inline-icon">
+                      </div>
+                           <p class="role"> Backend Developer </p>
+                  </div>
+
+                  <div class="member-card">
+                    <img class="member-photo" src="images/Fernandez.png" alt="Cherry Fernandez" />
+                      <div class="name-line">
+                          <span class="member-name">Cherry Fernandez</span>
+                          <img src="images/github.png" alt="icon" class="inline-icon">
+                      </div>
+                           <p class="role">UI Designer / Front-End Developer</p>
+                   </div>
+                </div>
+        </div>
+  </div>
+ 
+  <div class="footer">
+    <p>© 2025 Unisphere. All rights reserved.</p>
+  </div>
+
+     
+</body>
+</html>     
+   
