@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const searchInput = document.querySelector(".search-input"); 
     const tableBody = document.getElementById("org-table-body"); 
 
-/*------------------------------- LINEAR SEARCH ALGORITHM -------------------------------*/    
+/*------------------------------- SEQUENTIAL/LINEAR SEARCH ALGORITHM -------------------------------*/    
     function manualPartialMatch(text, searchTerm) {
             if (searchTerm.length === 0) return true; // Show all if search is empty
             if (searchTerm.length > text.length) return false; // Skip if search is longer than text
@@ -24,7 +24,6 @@ document.addEventListener("DOMContentLoaded", function () {
         
         return false; // No match found
     }
-
 
 // Listen for input in the search box 
     searchInput.addEventListener("input", function () {
