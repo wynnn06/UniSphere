@@ -1,12 +1,9 @@
-/* Main Sorting Algorithm Used: Quick Sort algorithm for sorting an array of objects by a given key (e.g., org name or control no)
-   Parameters:
-     - array: the data to sort (array of organization objects)
-     - key: the property to sort by ("organization_name" or "control_no")
-     - ascending: true for ascending order, false for descending
-
-     Comparison-Based Sorting Algorithm: Merge Sort
-
-*/
+ /*
+        Parameters:
+        - array:      Array of organization objects to be sorted
+        - key:        Property to sort by ("organization_name" or "control_no")
+        - ascending:  Boolean; true = ascending, false = descending (default: true)
+    */
 
 //Load DOM 
 document.addEventListener("DOMContentLoaded", function () {
@@ -55,65 +52,24 @@ document.addEventListener("DOMContentLoaded", function () {
                     tableBody.appendChild(tr);
                 });
         }
-
-/*------------------------------- QUICK SORT ALGORITHM -------------------------------*/    
-/*
-    function quicksort(array, key, ascending = true) {
-        
-        // Base case: already sorted
-            if (array.length <= 1) 
-                return array; 
-
-        //Select Pivot = last element
-        //const pivot = array[array.length - 1];
-            
-        //Select Pivot = last element
-        const pivot = array[Math.floor(array.length / 2)]; // middle element
- 
-        
-        //holds item: left (less than pivot) and right (greater than pivot)
-            const left = [];
-            const right = [];
-
-        //Compare each item with the pivot 
-            for (let i = 0; i < array.length - 1; i++) {
-                let a = array[i][key];
-                let b = pivot[key];
-
-                if (key === "control_no") {
-                    // Use numeric sorting for control numbers (e.g. 2425-001)
-                        a = parseInt(a.split("-")[1]); //gets only the numeric part
-                        b = parseInt(b.split("-")[1]);
-                } else {
-                    // String sort for organization name (case-insensitive)
-                        a = a.toLowerCase();
-                        b = b.toLowerCase();
-                }
-                
-            // Compare values depending on ascending or descending sort
-                if ((ascending && a < b) || (!ascending && a > b)) {
-                    left.push(array[i]);
-                } else {
-                    right.push(array[i]);
-                }
-            }
-        // Recursively sort the left and right parts and combine    
-            return [...quicksort(left, key, ascending), pivot, ...quicksort(right, key, ascending)];
-    }
-    */ 
     
-    // ---------------------- MERGE SORT ----------------------
+/*------------------------------- MERGE SORT ALGORITHM -------------------------------*/    
+    
+    //Divide
     function mergesort(array, key, ascending = true) {
-        if (array.length <= 1) return array; // Base case: arrays with 0 or 1 element are already sorted
 
-        const mid = Math.floor(array.length / 2); // Find the middle point to divide the array into two halves
-        const left = mergesort(array.slice(0, mid), key, ascending); // Recursively sort the left half
-        const right = mergesort(array.slice(mid), key, ascending); // Recursively sort the right half
+        // Base case: arrays with 0 or 1 element are already sorted
+            if (array.length <= 1) return array; 
+
+            const mid = Math.floor(array.length / 2); // Find the middle point to divide the array into two halves
+            const left = mergesort(array.slice(0, mid), key, ascending); // Recursively sort the left half
+            const right = mergesort(array.slice(mid), key, ascending); // Recursively sort the right half
 
          // Merge the two sorted halves
-        return merge(left, right, key, ascending);
-    }
+            return merge(left, right, key, ascending);
+     }
 
+    //Conquer and Merge 
     function merge(left, right, key, ascending) {
         const result = [];
 
@@ -184,14 +140,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const t0 = performance.now();
 
-        // To test Quick Sort
-        //sorted = quicksort(data, key, ascending);
-
         // To test Merge Sort
         sorted = mergesort(data, key, ascending);
-
         const t1 = performance.now();
-        //console.log(`Sorted by ${key} (${ascending ? "ASC" : "DESC"}) using QUICK SORT in ${(t1 - t0).toFixed(2)}ms`);
         console.log(`Sorted by ${key} (${ascending ? "ASC" : "DESC"}) using MERGE SORT in ${(t1 - t0).toFixed(2)}ms`);
 
 
