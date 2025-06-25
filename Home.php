@@ -42,8 +42,8 @@
                  <!-- Sorting Dropdown Selection-->
                 <select class="sort-dropdown">
                     <option value="reset">Sort by</option>
-                    <option value="orgname-asc">Name (A-Z)</option>
-                    <option value="orgname-desc">Name (Z-A)</option>
+                    <option value="orgname-asc">Organization Name (A-Z)</option>
+                    <option value="orgname-desc">Organization Name (Z-A)</option>
                     <option value="controlno-asc">Control No. (Ascending)</option>
                     <option value="controlno-desc">Control No. (Descending)</option>
                 </select>
@@ -68,7 +68,7 @@
                                 <span class="filter-tag" data-group="classification" data-value="Advocacy">Advocacy</span>
                                 <span class="filter-tag" data-group="classification" data-value="Arts">Arts</span>
                                 <span class="filter-tag" data-group="classification" data-value="Cultural">Cultural</span>
-                                <span class="filter-tag" data-group="classification" data-value="Fraternities & Sororities">Fraternities & Sororities</span>
+                                <span class="filter-tag" data-group="classification" data-value="Fraternities">Fraternities</span>
                                 <span class="filter-tag" data-group="classification" data-value="Political">Political</span>
                                 <span class="filter-tag" data-group="classification" data-value="Religious">Religious</span>
                                 <span class="filter-tag" data-group="classification" data-value="Scholars">Scholars</span>
@@ -91,7 +91,7 @@
                                 <span class="filter-tag" data-group="department" data-value="COED">COED</span>
                                 <span class="filter-tag" data-group="department" data-value="CE">CE</span>
                                 <span class="filter-tag" data-group="department" data-value="ITECH">ITECH</span>
-                                <span class="filter-tag" data-group="department" data-value="Law">Law</span>
+                                <span class="filter-tag" data-group="department" data-value="CL">CL</span>
                                 <span class="filter-tag" data-group="department" data-value="CPSPA">CPSPA</span>
                                 <span class="filter-tag" data-group="department" data-value="CSSD">CSSD</span>
                                 <span class="filter-tag" data-group="department" data-value="CS">CS</span>
@@ -132,9 +132,10 @@
     </main>
 
     <script src="load-organizations.js"></script>
-    <script src="Searching-Algorithm.js"></script>
-    <script src="Sorting-Algorithm.js"></script>
+    <script src="SequentialSearch-Algorithm.js"></script>
+    <script src="MergeSort-Algorithm.js"></script> 
     <script src="Filters-Algorithm.js"></script>
+   <!--  <script src="QuickSort-Algorithm.js"></script>-->  
 
     </body>
 </html>
