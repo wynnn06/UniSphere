@@ -4,7 +4,9 @@
         - key:        Property to sort by ("organization_name" or "control_no")
         - ascending:  Boolean; true = ascending, false = descending (default: true)
     */
-
+// Benchmark trackers
+let totalSortTime = 0;
+let sortCount = 0;
 //Load DOM 
 document.addEventListener("DOMContentLoaded", function () {
     const dropdown = document.querySelector(".sort-dropdown");  // Get references to the dropdown 
@@ -140,11 +142,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const t0 = performance.now();
 
+        // To test Quick Sort
+        // sorted = quicksort(data, key, ascending);
+
         // To test Merge Sort
         sorted = mergesort(data, key, ascending);
-        const t1 = performance.now();
-        console.log(`Sorted by ${key} (${ascending ? "ASC" : "DESC"}) using MERGE SORT in ${(t1 - t0).toFixed(2)}ms`);
 
+        const t1 = performance.now();
+        const elapsed = t1 - t0;
+
+        // Update average sort time
+        totalSortTime += elapsed;
+        sortCount++;
+        const averageTime = totalSortTime / sortCount;
+
+        //console.log(`Sorted by ${key} (${ascending ? "ASC" : "DESC"}) using QUICK SORT in ${(t1 - t0).toFixed(2)}ms`);
+        console.log(`Sorted by ${key} (${ascending ? "ASC" : "DESC"}) using MERGE SORT in ${(t1 - t0).toFixed(2)}ms`);
+        console.log(`📊 Current Average Sort Time: ${averageTime.toFixed(2)}ms`);
 
             renderTable(sorted);
         });
