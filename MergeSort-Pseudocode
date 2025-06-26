@@ -1,0 +1,42 @@
+Function mergeSort(array, key, ascending = true):
+    If array has 0 or 1 elements:
+        Return array
+
+    mid ← floor(length of array / 2)
+    left ← mergeSort(first half of array, key, ascending)
+    right ← mergeSort(second half of array, key, ascending)
+
+    Return merge(left, right, key, ascending)
+
+
+Function merge(left, right, key, ascending):
+    result ← empty list
+
+    While left and right are not empty:
+        a ← left[0][key]
+        b ← right[0][key]
+
+        If key is "control_no":
+            a ← extract numeric part after '-' from a
+            b ← extract numeric part after '-' from b
+        Else:
+            a ← lowercase of a
+            b ← lowercase of b
+
+        If ascending is true:
+            If a < b:
+                Append left[0] to result
+                Remove left[0] from left
+            Else:
+                Append right[0] to result
+                Remove right[0] from right
+        Else:
+            If a > b:
+                Append left[0] to result
+                Remove left[0] from left
+            Else:
+                Append right[0] to result
+                Remove right[0] from right
+
+    Append any remaining elements from left and right to result
+    Return result
