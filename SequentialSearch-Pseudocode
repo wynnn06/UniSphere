@@ -1,0 +1,19 @@
+Function manualPartialMatch(text, searchTerm):
+    If searchTerm is empty:
+        Return true  // Show all results
+
+    If length of searchTerm > length of text:
+        Return false  // Cannot match if search term is longer
+
+    For i from 0 to (length of text - length of searchTerm):
+        match ← true
+
+        For j from 0 to (length of searchTerm - 1):
+            If text[i + j] ≠ searchTerm[j]:
+                match ← false
+                Break inner loop
+
+        If match is true:
+            Return true  // Partial match found
+
+    Return false  // No match found
