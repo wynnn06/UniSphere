@@ -1,0 +1,36 @@
+@startuml
+actor User
+
+participant "home.php\n(View/UI)" as View
+participant "load-organizations.js\n(AJAX Loader)" as Loader
+participant "orglist.php\n(Model)" as Model
+database "SQL Server\n(Database)" as DB
+participant "SequentialSearch-Algorithm.js" as SearchAlgo
+participant "MergeSort-Algorithm.js" as SortAlgo
+participant "Filters-Algorithm.js" as FilterAlgo
+
+== Initial Page Load ==
+User -> View : Load home.php
+View -> Loader : fetch('orglist.php')
+Loader -> Model : Run SQL SELECT query
+Model -> DB : Retrieve organization data
+DB --> Model : Return results
+Model --> Loader : Return HTML <tr> rows
+Loader -> View : Insert rows into #org-table-body
+
+== Search Organization Name ==
+User -> View : Type in search input
+View -> SearchAlgo : Trigger search input listener
+SearchAlgo -> View : Apply sequential search (show/hide rows)
+
+== Sort by Name or Control No ==
+User -> View : Select sort option from dropdown
+View -> SortAlgo : Extract visible rows
+SortAlgo -> SortAlgo : Apply merge sort by key
+SortAlgo -> View : Re-render sorted table rows
+
+== Apply Filter Tag(s) ==
+User -> View : Click filter tag (classification/department)
+View -> FilterAlgo : Update active filters
+FilterAlgo -> View : Show/hide rows based on filter + search
+@enduml
