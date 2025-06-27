@@ -84,6 +84,14 @@ document.addEventListener("DOMContentLoaded", function () {
             // Use numeric sorting for control numbers (e.g. 2425-001)
                 a = parseInt(a.split("-")[1]); //gets only the numeric part
                 b = parseInt(b.split("-")[1]);
+
+             /*
+                const [yearA, suffixA] = a.split("-").map(Number);
+                const [yearB, suffixB] = b.split("-").map(Number);
+
+                a = yearA * 10000 + suffixA;
+                b = yearB * 10000 + suffixB;
+             */
             } else {
              // String sort for organization name (case-insensitive)
                 a = a.toLowerCase();
